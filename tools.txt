@@ -1,0 +1,15 @@
+wafw00f - Web Application Firewall detection
+dirb & dirbuster - Directory Finder
+subfinder - Subdomain Finder
+ffuf - FUZZER
+sqlpayloads.txt - SQLi GitHub Repository to use with fuzzer
+zaproxy - scanner GUI
+wapiti - scanner CLI - Generates a Report
+nmap -SV - Port and Version Detector
+nmap -O - Server's OS Detector
+nuclei - scanner
+nuclei -severity - For Different Levels of Severity
+waybackurls - Reconaissance for past tools, third-party searching from an archive
+
+
+

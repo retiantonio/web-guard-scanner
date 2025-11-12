@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.9">
+  <diagram name="Page-1" id="DIBQ3ysvHwq2Db6HFXKo">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-1" value="Utilizator obisnuit" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="130" y="190" width="60" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-4" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="250" y="15" width="370" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry y="30" width="370" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-3" value="Web Guard Scanner" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry x="112.5" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-5" value="Scanare&lt;div&gt;subdomenii&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry x="125" y="55" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-6" value="Scanare vulnerabilitati" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry x="125" y="155" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-7" value="Scanare porturi" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry x="125" y="255" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-8" value="Abonare la cont profesional" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="oMHpI_TbJjO7uRaPIxTK-4">
+          <mxGeometry x="125" y="360" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oMHpI_TbJjO7uRaPIxTK-1" target="oMHpI_TbJjO7uRaPIxTK-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oMHpI_TbJjO7uRaPIxTK-1" target="oMHpI_TbJjO7uRaPIxTK-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oMHpI_TbJjO7uRaPIxTK-1" target="oMHpI_TbJjO7uRaPIxTK-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oMHpI_TbJjO7uRaPIxTK-12" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="oMHpI_TbJjO7uRaPIxTK-1" target="oMHpI_TbJjO7uRaPIxTK-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.9">
+  <diagram name="Page-1" id="BSvT47zY3RmNapSfZ35J">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-13" value="" style="group" connectable="0" vertex="1" parent="1">
+          <mxGeometry x="280" y="50" width="450" height="670" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-2" value="" style="rounded=0;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="-30" y="10" width="400" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-3" value="Scanare&lt;div&gt;subdomenii&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="30" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-4" value="Scanare vulnerabilitati" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="120" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-14" value="Scanare directoare&lt;div&gt;domeniu&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="210" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-5" value="Scanare porturi" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="390" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-16" value="Analiza trafic&lt;div&gt;de retea&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="480" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-15" value="Detectare Web Application Firewall" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="300" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-6" value="Abonare la cont profesional" style="ellipse;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="YcLzohaoKcmmdp5NqMVA-13">
+          <mxGeometry x="110" y="570" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-17" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-1" value="Utilizator Pro" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="310" width="60" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-10" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="YcLzohaoKcmmdp5NqMVA-1" target="YcLzohaoKcmmdp5NqMVA-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="YcLzohaoKcmmdp5NqMVA-11" value="Web Guard Scanner" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;container=0;" vertex="1" parent="1">
+          <mxGeometry x="385" y="30" width="130" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

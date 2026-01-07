@@ -48,14 +48,13 @@ class ReconCrawler:
 
         return list(self.parametrized)
 
-crawler = ReconCrawler('http://testphp.vulnweb.com/listproducts.php?cat=1')
-crawled_urls = crawler.crawl()
-if crawled_urls:
-    for crawled_url in crawled_urls:
-        print(f"{crawled_url}\n")
-
-
+        
 
 
 
         
+
+
+
+
+    

@@ -40,7 +40,7 @@ class Scan(models.Model):
     end_time = models.DateTimeField(null= True, blank= True)
     date = models.DateField(null= True, blank= True)
 
-    scan_score = models.IntegerField(null= True, blank= True)
+    score = models.IntegerField(null= True, blank= True)
 
     modules_selected = models.JSONField(default= list)
 
@@ -50,7 +50,7 @@ class Scan(models.Model):
 class Vulnerability(models.Model):
     scan = models.ForeignKey(Scan, on_delete= models.CASCADE, related_name= 'vulnerabilities')
     type = models.CharField(max_length= 255)
-    details = models.TextField()
+    details = models.JSONField(default=dict)
     
     url_found = models.URLField(max_length= 2048, blank= True)
     severity = models.CharField(max_length= 50)

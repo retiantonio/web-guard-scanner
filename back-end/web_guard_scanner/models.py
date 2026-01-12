@@ -17,6 +17,7 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
+
 class Target(models.Model):
     owner = models.ForeignKey(User, on_delete= models.CASCADE, related_name = 'targets')
     name = models.CharField(max_length= 255)
@@ -24,6 +25,7 @@ class Target(models.Model):
 
     def __str__(self):
         return self.url
+
 
 class Scan(models.Model):
     STATUS_STATES = [
@@ -47,6 +49,7 @@ class Scan(models.Model):
     def __str__(self):
         return f"Scan for {self.target.url} | {self.status}"
     
+
 class Vulnerability(models.Model):
     scan = models.ForeignKey(Scan, on_delete= models.CASCADE, related_name= 'vulnerabilities')
     type = models.CharField(max_length= 255)

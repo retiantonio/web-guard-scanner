@@ -36,15 +36,18 @@ class XsstrikeScannerModule(AbstractScannerModule): #detect XSS - extremely effe
             raw_output = e.stdout.decode('utf-8') if isinstance(e.stdout, bytes) else e.stdout
             if raw_output:
                 return self.parse_xsstrike_output(raw_output, target_url)
-            return None
+            return self.return_error_output(target_url, 
+                            "Error! XSStrike timed out.")
         
         except subprocess.CalledProcessError as e:
-            print("XSStrike failed")
+             return self.return_error_output(target_url, 
+                        "Error! XSStrike process error.")
 
     def parse_xsstrike_output(self, output, target_url):
         if not output or "[-]" in output:
             print("[-] XSStrike error or no output\n")
-            return None
+            return self.return_error_output(target_url, 
+                "Error! XSStrike encountered an error, make sure the URL is parameterized.")
         
         pattern = r"(?:Reflections found):\s+(.*)"
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
@@ -73,3 +76,17 @@ class XsstrikeScannerModule(AbstractScannerModule): #detect XSS - extremely effe
                 return vulnerability
                 
         return None
+    
+    def return_error_output(self, target_url, message):
+        error_found = {
+                        "type": "Cross-Site Scripting (XSS)",
+                        "url_found": target_url,
+                        "severity": "ERROR",
+                        "details": {
+                            "message": [
+                                message
+                            ]
+                        }
+        }
+                    
+        return error_found

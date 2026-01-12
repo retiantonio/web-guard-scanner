@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-sj@gf@q293b-cp2w)b=#qgc8&utc$80^-m^gkl@gjvbe7o5hvl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,9 +39,18 @@ INSTALLED_APPS = [
 
     'web_guard_scanner',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
-# Celery Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']

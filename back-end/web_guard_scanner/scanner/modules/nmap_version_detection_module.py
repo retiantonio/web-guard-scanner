@@ -26,12 +26,22 @@ class NmapVersionDetectionModule(AbstractScannerModule):
                     cwd = home_dir
             )
 
+            if result.stderr.strip():
+                return self.return_error_output(target_url, 
+                    "Error! Nmap encountered an error, verify that the target is valid.")
+
+            if "0 hosts up" in result.stdout:
+                return self.return_error_output(target_url, 
+                    "Error! Nmap encountered an error, verify that the target is valid.")
+
             return self.parse_nmap_xml(result.stdout, target_url)
         
         except subprocess.TimeoutExpired:
-            return None
+            return self.return_error_output(target_url, 
+                        "Error! nmap timed out.")
         except subprocess.CalledProcessError:
-            return None 
+            return self.return_error_output(target_url, 
+                        "Error! nmap process error")
 
     def parse_nmap_xml(self, xml_string, target_url):
         root = ET.fromstring(xml_string)
@@ -61,3 +71,17 @@ class NmapVersionDetectionModule(AbstractScannerModule):
             }
 
         return vulnerability
+    
+    def return_error_output(self, target_url, message):
+        error_found = {
+            "type": "Service Discovery (NMAP)",
+            "url_found": target_url,
+            "severity": "ERROR",
+            "details": {
+                "message": [
+                    message
+                ]
+            }
+        }
+                    
+        return error_found

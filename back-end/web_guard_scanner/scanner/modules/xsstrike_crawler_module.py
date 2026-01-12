@@ -32,14 +32,22 @@ class XsstrikeCrawlerModule(AbstractScannerModule): #detect XSS - extremely effe
             return self.parse_xsstrike_output(result.stdout, target_url)
         
         except subprocess.CalledProcessError:
-           return None
+           return self.return_error_output(target_url, 
+                        "Error! XSStrike process error.")
         except subprocess.TimeoutExpired:
-            return None #maybe modify, but if crawler takes more than 5 minutes theres something very wrong
+            return self.return_error_output(target_url, 
+                        "Error! XSStrike timed out.")
 
 
     def parse_xsstrike_output(self, output, target_url):
+        if not output or "[-]" in output:
+            print("[-] XSStrike error or no output\n")
+            return self.return_error_output(target_url, 
+                        "Error! XSStrike encountered an error.")
+        
+
         findings = []
-    
+
         ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
         clean_output = ansi_escape.sub('', output)
 
@@ -64,3 +72,17 @@ class XsstrikeCrawlerModule(AbstractScannerModule): #detect XSS - extremely effe
             })
         
         return findings
+
+    def return_error_output(self, target_url, message):
+        error_found = {
+                        "type": "Cross-Site Scripting (XSS)",
+                        "url_found": target_url,
+                        "severity": "ERROR",
+                        "details": {
+                            "message": [
+                                message
+                            ]
+                        }
+        }
+                    
+        return error_found

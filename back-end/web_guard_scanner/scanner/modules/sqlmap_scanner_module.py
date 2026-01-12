@@ -19,13 +19,14 @@ class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
 
         command = ['sqlmap','-u', target_url,'-dbs', "--batch"]
         
+        common_error_message = "Error! SQLmap encountered an error, make sure the URL is parameterized."
+
         result = self.execute_subprocess_command(command)
         if not result or "[CRITICAL]" in result.stdout:
             print(f"[-] Sqlmap reported a failure for {target_url}")
-            return None
-
+            return self.return_error_output(target_url, common_error_message)
+            
         dbs_found = self.extract_databases(result.stdout)
-        # filter databases from systematics
         to_search_dbs = [db for db in dbs_found if db not in SYSTEM_DBS]
         
         all_scan_results = []
@@ -35,9 +36,8 @@ class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
             result = self.execute_subprocess_command(command)
             if not result or "[CRITICAL]" in result.stdout:
                 print(f"[-] Sqlmap reported a failure for {target_url}")
-                return None
+                return self.return_error_output(target_url, common_error_message)
             
-            #filter tables based on priority
             tables = self.filter_tables(result.stdout)
             db_results = {'database': searchable_db, 'tables': []}
 
@@ -46,7 +46,7 @@ class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
                 result = self.execute_subprocess_command(command)
                 if not result or "[CRITICAL]" in result.stdout:
                     print(f"[-] Sqlmap reported a failure for {target_url}")
-                    return None
+                    return self.return_error_output(target_url, common_error_message)
                         
                 columns = self.filter_columns(result.stdout)
                 delimiter = ","
@@ -56,8 +56,8 @@ class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
                 result = self.execute_subprocess_command(command)
                 if not result or "[CRITICAL]" in result.stdout:
                     print(f"[-] Sqlmap reported a failure for {target_url}")
-                    return None
-                
+                    return self.return_error_output(target_url, common_error_message)
+            
                 db_specific_dump_dir = os.path.join(base_dump_dir, searchable_db)
                 latest_csv = self.get_latest_sqlmap_csv(db_specific_dump_dir,table)
 
@@ -144,6 +144,20 @@ class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
         }
     
         return [vulnerability]
+
+    def return_error_output(self, target_url, message):
+        error_found = {
+                        "type": "SQL Injection (SQLi)",
+                        "url_found": target_url,
+                        "severity": "ERROR",
+                        "details": {
+                            "message": [
+                                message
+                            ]
+                        }
+                }
+                    
+        return error_found
 
     def execute_subprocess_command(self, command):
         home_dir = '/home/kali/'

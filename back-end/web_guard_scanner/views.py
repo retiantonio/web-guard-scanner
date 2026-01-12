@@ -2,16 +2,26 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action
 from rest_framework import viewsets, status
-from .models import Scan, Target
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAdminUser
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
+
+from django.shortcuts import get_object_or_404
+
+
+
+from .models import Scan, Target, Profile
 
 from .scanner.modules.wafwoof_detection_module import WafwoofDetectionModule
 from .scanner.modules.nmap_version_detection_module import NmapVersionDetectionModule 
 
 from .tasks import execute_scan_task
 
-import subprocess
 
-from .serializers import ScanSerializer, TargetSerializer
+from .serializers import ScanSerializer, TargetSerializer, RegisterSerializer, LoginSerializer, ChangePlanSerializer
 
 # Create your views here.
 # request Handler
@@ -53,6 +63,9 @@ class TargetViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
     @action(detail=True, methods=['post'])
     def get_web_application_firewall(self, request, pk=None):
         target = self.get_object()
@@ -86,3 +99,60 @@ class TargetViewSet(viewsets.ModelViewSet):
                 "status": "error",
                 "message": "nmap failed"
             }, status=408)
+
+    
+class RegisterView(APIView):
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token, created = Token.objects.get_or_create(user=user)
+            
+            return Response({
+                "status": "success",
+                "message": "User registered successfully",
+                "token": token.key,
+                "user_type": user.profile.user_type
+            }, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class LoginView(APIView):
+
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        
+        return Response({
+            "token": token.key,
+            "username": user.username,
+            "user_type": user.profile.user_type,
+            "message": "Login successful"
+        })
+
+
+class ChangeUserTypeView(APIView):
+
+    permission_classes = [] 
+
+    def post(self, request, user_id):
+        profile = get_object_or_404(Profile, user__id=user_id)
+        
+        serializer = ChangePlanSerializer(profile, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({
+                "status": "success",
+                "username": profile.user.username,
+                "new_plan": profile.user_type
+            })
+        return Response(serializer.errors, status=400)

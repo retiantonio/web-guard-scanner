@@ -35,8 +35,6 @@ def getData(request):
     return Response(data)
 
 class ScanViewSet(viewsets.ModelViewSet):
-    queryset = Scan.objects.all()
-
     serializer_class = ScanSerializer
 
     def create(self, request, *args, **kwargs):
@@ -47,9 +45,12 @@ class ScanViewSet(viewsets.ModelViewSet):
         execute_scan_task.delay(scan.id)
 
         headers = self.get_success_headers(serializer.data)
-
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
+    def get_queryset(self):
+        user = self.request.user
+        return Scan.objects.filter(target__owner=user).order_by('-start_time')
+
 class TargetViewSet(viewsets.ModelViewSet):
     queryset = Target.objects.all()
 
@@ -141,11 +142,12 @@ class LoginView(APIView):
 
 
 class ChangeUserTypeView(APIView):
+    
+    # authentication_classes = [TokenAuthentication] 
+    # permission_classes = [IsAuthenticated]
 
-    permission_classes = [] 
-
-    def post(self, request, user_id):
-        profile = get_object_or_404(Profile, user__id=user_id)
+    def post(self, request):
+        profile = get_object_or_404(Profile, user=request.user)
         
         serializer = ChangePlanSerializer(profile, data=request.data, partial=True)
         if serializer.is_valid():

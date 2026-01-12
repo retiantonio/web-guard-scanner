@@ -37,13 +37,13 @@ class ScanManager:
         all_findings = []
         urls_to_scan = [self.target_url]
         
-        #if self.scan.target.owner.profile.user_type == 'PRO':
-        if "recon-crawler" in self.modules_to_run:
-            parameter_crawler = ReconCrawler(self.target_url)
-            crawled_urls = parameter_crawler.crawl()
+        if self.scan.target.owner.profile.user_type == 'PRO':
+            if "recon-crawler" in self.modules_to_run:
+                parameter_crawler = ReconCrawler(self.target_url)
+                crawled_urls = parameter_crawler.crawl()
 
-            if crawled_urls:
-                urls_to_scan.extend(crawled_urls)
+                if crawled_urls:
+                    urls_to_scan.extend(crawled_urls)
 
         if 'waf-detection' in self.modules_to_run:
             waf_detection_module = WafwoofDetectionModule()

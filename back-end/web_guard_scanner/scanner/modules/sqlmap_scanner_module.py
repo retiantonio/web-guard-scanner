@@ -7,9 +7,26 @@ import csv
 import glob
 
 SYSTEM_DBS = ['information_schema', 'mysql', 'performance_schema', 'sys']
-TABLES_WORDLIST = ['users'] #to include a really good and complex wordlist, this is CLEARLY NOT ENOUGH
-COLUMNS_WORDLIST = ['uname', 'pass', 'cc', 'email']
-#maybe some AI idk
+TABLES_WORDLIST = [
+    'users', 'user', 'tbl_users', 'sys_users', 'account', 'accounts', 
+    'auth_user', 'login', 'credentials', 'creds', 'members', 'web_users', 
+    'profiles', 'user_profile', 'user_info', 'user_details', 'customers', 
+    'admins', 'staff', 'employees', 'operators', 'superusers', 
+    'wp_users', 'joomla_users', 'drupal_users', 'aspnet_Users'
+]
+
+COLUMNS_WORDLIST = [
+    'username', 'uname', 'login', 'login_id', 'alias', 'handle', 'nickname',
+    'password', 'pass', 'passwd', 'pwd', 'hash', 'secret', 'password_hash',
+    'email', 'e-mail', 'mail', 'email_address', 'contact_email',
+    'first_name', 'fname', 'last_name', 'lname', 'surname', 'fullname', 'display_name',
+    'ssn', 'dob', 'birthdate', 'gender', 'phone', 'mobile', 'address',
+    'cc_number', 'credit_card', 'card_num', 'billing_address', 'tax_id',
+    'user_id', 'uid', 'id', 'uuid', 'guid', 'role', 'privilege', 'access_level',
+    'is_admin', 'is_staff', 'permission_bits', 'is_active', 'status',
+    'last_login', 'created_at', 'updated_at', 'deleted_at',
+    'remember_token', 'reset_token', 'api_key', 'session_id', 'two_factor_secret'
+]
 
 class SqlmapScannerModule(AbstractScannerModule): #detect SQLi
     

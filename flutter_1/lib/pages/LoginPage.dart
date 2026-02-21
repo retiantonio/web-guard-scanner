@@ -25,7 +25,7 @@ class _LoginScannerStylePageState extends State<LoginPage> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('http://10.247.240.85:8000/api/login/');
+    final url = Uri.parse('http://10.14.245.85:8000/api/login/');
     final body = {
       "username": _usernameController.text.trim(),
       "password": _passwordController.text.trim(),

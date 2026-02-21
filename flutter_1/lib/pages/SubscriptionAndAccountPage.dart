@@ -35,7 +35,7 @@ class _SubscriptionAndAccountPageState
       final Map<String, dynamic> requestBody = {"user_type": "PRO"};
 
       final res = await http.post(
-        Uri.parse('http://10.247.240.85:8000/api/change-plan/'),
+        Uri.parse('http://10.14.245.85:8000/api/change-plan/'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Token $token',

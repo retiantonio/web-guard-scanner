@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 enum ScanType { directoryScan, versionDetect, directoryBruteforce, wafDetect }
 
 class ApiService {
-  static const baseUrl = 'http://10.247.240.85:8000/api';
+  static const baseUrl = 'http://10.14.245.85:8000/api';
 
   static Future<List<int>> fetchUserTargetIds({required String token}) async {
     final res = await http.get(

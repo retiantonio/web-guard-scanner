@@ -25,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('http://10.247.240.85:8000/api/register/');
+    final url = Uri.parse('http://10.14.245.85:8000/api/register/');
     final body = {
       "username": _usernameController.text.trim(),
       "email": _emailController.text.trim(),

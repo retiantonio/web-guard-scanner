@@ -94,7 +94,7 @@ List<Widget> buildPrettyOutputWidgets(dynamic output, {int indent = 0}) {
 }
 
 class ApiService {
-  static const baseUrl = 'http://10.247.240.85:8000/api';
+  static const baseUrl = 'http://10.14.245.85:8000/api';
 
   static Future<Map<String, dynamic>> startWebsiteScan({
     required String token,

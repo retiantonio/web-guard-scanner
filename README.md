@@ -24,6 +24,44 @@
   By wrapping industry-standard CLI security tools into a modern and responsive interface, allowing security professionals to manage vulnerability assessments through a centralized dashboard.
 </p>
 
+<h3>📱 Application Preview</h3>
+
+<table width="100%">
+  <tr>
+    <td align="center" width="25%"><b>Authentication</b></td>
+    <td align="center" width="25%"><b>Core Dashboard</b></td>
+    <td align="center" width="25%"><b>Scanning Engine</b></td>
+     <td align="center" width="25%"><b>History & Analysis</b></td>
+  </tr>
+  <tr>
+   <td>
+      <img src="screenshots/login.jpeg" width="100%"><br>
+      <img src="screenshots/register.jpeg" width="100%">
+   </td>
+   <td>
+      <img src="screenshots/mainmenu.jpeg" width="100%"><br>
+      <img src="screenshots/subscriptionplan.jpeg" width="100%">
+   </td>
+   <td>
+       <img src="screenshots/selectingmodules.jpeg" width="100%"><br>
+       <img src="screenshots/startedscan.jpeg" width="100%"><br>
+      <img src="screenshots/scanreport.jpeg" width="100%">
+   </td>
+   <td>
+       <img src="screenshots/scanhistory.jpeg" width="100%"><br>
+       <img src="screenshots/scandetails.jpeg" width="100%">
+   </td>
+    
+  </tr>
+  <tr>
+    <td align="center"><i>Secure Entry</i></td>
+    <td align="center"><i>User Management</i></td>
+    <td align="center"><i>Active Assessment</i></td>
+    <td align="center"><i>Vulnerability Tracking</i></td>
+  </tr>
+</table>
+
+
 <h3>🚀 Core Implementation Features</h3>
 <ul>
   <li><b>Modular Scanning Engine:</b> A custom Python orchestration layer that executes and parses output from industry-standard tools:

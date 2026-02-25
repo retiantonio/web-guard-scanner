@@ -66,7 +66,7 @@
 <ul>
   <li><b>Modular Scanning Engine:</b> A custom Python orchestration layer that executes and parses output from industry-standard tools:
     <ul>
-      <li><b>Sqlmap & Recon Modules:</b> Extensible wrappers for automated SQL injection testing and database crawling.</li>
+      <li><b>Sqlmap Modules:</b> Extensible wrappers for automated SQL injection testing and database crawling.</li>
       <li><b>XSStrike Crawling and Brute-Forcing Modules:</b> Extensible wrappers for automated parameterized url brute-forcing and website crawling.</li>
       <li><b>Wafw00f Integration:</b> Automated fingerprinting to detect and identify Web Application Firewalls (WAFs).</li>
       <li><b>Nmap Service Mapping:</b> Deep network analysis including port status, service version detection, and OS fingerprinting.</li>
